@@ -1,0 +1,10 @@
+<div class="row">
+  <h1>Editing Receipt</h1>
+  <div>
+    <%= link_to 'Show', @receipt %> |
+    <%= link_to 'Back', receipts_path %>
+  </div>
+</div>
+
+<%= render 'form', receipt: @receipt %>
+

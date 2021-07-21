@@ -1,0 +1,56 @@
+<%= form_with(model: receipt) do |form| %>
+  <% if receipt.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(receipt.errors.count, "error") %> prohibited this receipt from being saved:</h2>
+
+      <ul>
+        <% receipt.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <datalist id="store_names">
+      <% Receipt.store_names.each do |store_name| %>
+        <option><%= store_name %></option>
+      <% end %>
+    </datalist>
+    <%= form.label :store_name %>
+    <%= form.text_field :store_name, autocomplete: :off, list: :store_names %>
+  </div>
+
+  <div class="field datetime-select">
+    <%= form.label :purchased_at %>
+    <%= form.datetime_select :purchased_at, ampm: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :notes %>
+    <%= form.text_area :notes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sales_tax_cents %>
+    <%= form.number_field :sales_tax_cents %>
+  </div>
+
+  <div id="receipt-items">
+    <h3>Items</h3>
+    <datalist id="item_names">
+      <% ReceiptItem.item_names.each do |item_name| %>
+        <option><%= item_name %></option>
+      <% end %>
+    </datalist>
+    <%= form.fields_for :receipt_items do |builder| %>
+      <%= render "receipt_item_fields", form: builder %>
+    <% end %>
+  </div>
+
+	<%= button_to_add_fields "Add Item", form, :receipt_items %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

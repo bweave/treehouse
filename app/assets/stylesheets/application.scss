@@ -1,0 +1,69 @@
+@import "scaffolds";
+@import "skins-air";
+
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+
+  .col {
+    flex: 1
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .wrapper {
+    flex-direction: row;
+    justify-content: space-between;
+
+    .col:not(:last-child) {
+      margin-right: 2rem;
+    }
+  }
+}
+
+table {
+  width: 100%
+
+  th {
+    text-align: left
+  }
+
+  td {
+    padding: 0 0 5px
+  }
+}
+
+a.remove_fields {
+  display: block;
+  text-align: right;
+}
+
+a.add_fields {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+p.lead {
+  font-size: 1.1rem;
+}
+
+form {
+  margin: 0 auto;
+  max-width: 800px;
+}

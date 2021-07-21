@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <h1>
+    <%= @receipt.store_name %>
+    <small><%= @receipt.purchased_at.strftime("%m/%d/%y %H:%M%p") %></small>
+  </h1>
+
+  <div>
+    <%= link_to 'Edit', edit_receipt_path(@receipt) %> |
+    <%= link_to 'Back', receipts_path %>
+  </div>
+</div>
+
+<p class="lead"><%= @receipt.notes %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @receipt.receipt_items.each do |receipt_item| %>
+      <%= render receipt_item %>
+    <% end %>
+  </tbody>
+</table>
+
+<p class="lead">
+  <strong>Total:</strong>
+  <%= number_to_currency @receipt.total %>
+</p>

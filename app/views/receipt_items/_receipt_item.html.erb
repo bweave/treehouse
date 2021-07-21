@@ -1,0 +1,14 @@
+<tr>
+  <td>
+    <%= receipt_item.name %>
+  </td>
+  <td>
+    <%= number_to_currency receipt_item.price_cents / 100.0 %>
+  </td>
+  <td>
+    <%= receipt_item.quantity %>
+  </td>
+  <td>
+    <%= number_to_currency(receipt_item.price_cents / 100.0 * receipt_item.quantity) %>
+  </td>
+</tr>
